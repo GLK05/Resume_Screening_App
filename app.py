@@ -27,9 +27,14 @@ if uploaded_files and job_description and st.button("Rank Resumes"):
 
         st.write("### 🏆 Ranked Candidates")
         for i, (name, score) in enumerate(results, 1):
-            # Handle if score is a number not a tuple
-            score_value = score[0] if isinstance(score, (list, tuple)) else score
-            st.write(f"{i}. {name} — Match Score: {score_value:.2f}")
+    # Inspect the score
+                if isinstance(score, (list, tuple)):
+                    score_value = score[0]
+                elif isinstance(score, (float, int)):
+                    score_value = score
+                else:
+                    score_value = 0  # fallback if None or wrong type
+                    st.write(f"{i}. {name} — Match Score: {score_value:.2f}")
 
         df = pd.DataFrame(
             [(name, score[0] if isinstance(score, (list, tuple)) else score)
