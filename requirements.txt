@@ -1,0 +1,8 @@
+streamlit
+spacy
+scikit-learn
+pandas
+PyPDF2
+resume_parser
+ranking_engine
+utils
